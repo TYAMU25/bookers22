@@ -11,6 +11,12 @@
   <body>
     <%= render 'layouts/header' %>
       <main>
+        <%= form_with(local: true,url: search_path , method: :get) do %>
+          <%= select(@search_content, :range, [["User","user"], ["Book","book"]])%>
+          <%= select(@search_content, :search, [["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]])%>
+          <%= text_field(@search_content, :word)%>
+          <%= submit_tag "検索" %>
+          <% end %>
         <p id="notice"><%= notice %></p>
         <%= yield %>
       </main>
